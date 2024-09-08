@@ -227,6 +227,8 @@
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
+      <br>
+    <app-tableau></app-tableau> 
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
@@ -320,8 +322,15 @@
           </svg>
         </a>
       </div>
+
+
+
     </div>
+
+
+    
   </div>
+  
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -336,15 +345,3 @@
 <router-outlet />
 
 
-<h1>salemou alaikom</h1>
-
-<table>
-  <tr>
-    <th>esm telmith</th>
-    <th>classou</th>
-  </tr>
-  <tr *ngFor="let s of students">
-<td>{{s.name}}</td>
-<td>{{s.class}}</td>
-  </tr>
-</table>

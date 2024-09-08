@@ -1,0 +1,19 @@
+<h1>Salemou Alaikom</h1>
+
+<div *ngFor="let class of groupedStudents | keyvalue">
+  <h2>{{ class.key }}</h2> <!-- Display class name -->
+  <table border width="100%">
+    <thead>
+      <tr>
+        <th>اسم التلميذ</th>
+        <th>الفصل</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of class.value">
+        <td>{{ s.name }}</td>
+        <td>{{ s.class }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
