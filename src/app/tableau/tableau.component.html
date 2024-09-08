@@ -2,7 +2,7 @@
 
 <div *ngFor="let class of groupedStudents | keyvalue">
   <h2>{{ class.key }}</h2> <!-- Display class name -->
-  <table border width="100%">
+  <table border="1" width="100%">
     <thead>
       <tr>
         <th>اسم التلميذ</th>
@@ -12,7 +12,7 @@
     <tbody>
       <tr *ngFor="let s of class.value">
         <td>{{ s.name }}</td>
-        <td>{{ s.class }}</td>
+        <td>{{ s.email }}</td>
       </tr>
     </tbody>
   </table>

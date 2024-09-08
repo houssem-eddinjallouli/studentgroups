@@ -1,17 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { Route } from '@angular/router';
-
+import { Component, OnInit, inject } from '@angular/core';
 
 @Component({
   selector: 'app-tableau',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tableau.component.html',
-  styleUrl: './tableau.component.css'
+  styleUrls: ['./tableau.component.css'] // Corrected to styleUrls
 })
-export class TableauComponent {
+export class TableauComponent implements OnInit {
   students: any[] = [];
   groupedStudents: { [key: string]: any[] } = {}; // Object to hold grouped students
   http = inject(HttpClient);
@@ -21,14 +19,14 @@ export class TableauComponent {
   }
 
   getStudents(): void {
-    const url = 'https://ca5e9a773c385a7210fe.free.beeceptor.com/api/users/';
+    const url = 'https://hamed-jallouli-418eee7bda96.herokuapp.com/credit/show-all-customers';
     this.http.get<any[]>(url).subscribe({
       next: (data) => {
         const uniqueStudents = new Map();
-
+console.log(data)
         data.forEach(student => {
-          if (!uniqueStudents.has(student.id)) {
-            uniqueStudents.set(student.id, student);
+          if (!uniqueStudents.has(student.name)) {
+            uniqueStudents.set(student.name, student);
           }
         });
 
@@ -43,10 +41,10 @@ export class TableauComponent {
 
   groupStudentsByClass(): void {
     this.students.forEach(student => {
-      if (!this.groupedStudents[student.class]) {
-        this.groupedStudents[student.class] = []; // Initialize if class doesn't exist
+      if (!this.groupedStudents[student.email]) {
+        this.groupedStudents[student.email] = []; // Initialize if class doesn't exist
       }
-      this.groupedStudents[student.class].push(student); // Add student to the class
+      this.groupedStudents[student.email].push(student); // Add student to the class
     });
   }
 }
