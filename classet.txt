@@ -1,0 +1,24 @@
+async function send() {
+    var telmithname = document.getElementById('Label2').innerHTML;
+    var classname = document.getElementById('Label3').innerHTML;
+    var jsondata = {
+        name: telmithname,
+        email: classname
+    };
+  
+    try {
+        const response = await fetch('https://hamed-jallouli-418eee7bda96.herokuapp.com/credit/add-customer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsondata)
+        });
+  
+    } catch (error) {
+        console.error('Error:', error);
+    }
+  }
+  
+  
+  send();
