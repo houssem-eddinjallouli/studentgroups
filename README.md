@@ -1,27 +1,55 @@
-# Studentgroups
+# Student Groups - Classmates Connector
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+This project aims to help students easily find and connect with their classmates. By automating the process of retrieving student data from your university platform and organizing it by class, this tool simplifies communication and collaboration between students in the same class.
 
-## Development server
+## Features
+- Retrieves student names and their respective classes from the Esprit student platform.
+- Groups students by class, allowing them to find and connect with their classmates.
+- Provides a simple web interface where students can view their class groups.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## How It Works
+1. Connect to the Esprit student platform: [Esprit Student Platform](https://esprit-tn.com/esponline/Online/default.aspx).
+2. Run a script in the browser console to send your data to the server.
+3. Visit the web app to view your class list and classmates: [Student Groups](https://studentgroups.vercel.app/).
 
-## Code scaffolding
+## Steps to Use
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Step 1: Fetch Student Data
+1. Go to the Esprit student platform: [Esprit Student Platform](https://esprit-tn.com/esponline/Online/default.aspx).
+2. Open the browser developer tools (usually by pressing `F12` or right-clicking and selecting "Inspect").
+3. Navigate to the **Console** tab.
+4. Copy the script from the [classet.txt](./classet.txt) file and paste it into the console.
+5. Press `Enter` to execute the script. Your student name and class will be sent to the server.
 
-## Build
+### Step 2: View Your Classmates
+1. Visit [Student Groups](https://studentgroups.vercel.app/).
+2. Find your name and class.
+3. View a list of your classmates.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Project Structure
+- **Angular Frontend**: Displays the list of students, grouped by class.
+- **Backend (Node.js)**: Handles POST requests to store student information and GET requests to retrieve the list of students.
 
-## Running unit tests
+## Angular Frontend
+The Angular app fetches student data and groups them by their class to display on the web interface.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```html
+<h1>Salemou Alaikom</h1>
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<div *ngFor="let class of groupedStudents | keyvalue">
+  <h2>{{ class.key }}</h2> <!-- Display class name -->
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>اسم التلميذ</th>
+        <th>الفصل</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of class.value">
+        <td>{{ s.name }}</td>
+        <td>{{ s.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
